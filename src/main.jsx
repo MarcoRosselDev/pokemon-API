@@ -1,10 +1,9 @@
+// nesecitamos crear un elemento raiz
 
-import "./App.css";
+import ReactDOM from "react-dom/client";
 
-function App() {
-  return (
-    
-  );
-}
+const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-export default App;
+console.log(root);
+
+// de este root nos interesa el metodo render que es para dibujar
