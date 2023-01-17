@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "./components/Button";
-import { useState } from "react";
 
 const App = () => {
   const [pokemonId, setPokemonId] = useState(1);
@@ -10,9 +9,14 @@ const App = () => {
       <Button
         text="Anterior"
         clicked={() => {
-          setPokemonId(pokemonId - 1);
+          if (pokemonId === 1) {
+            setPokemonId(1);
+          } else {
+            setPokemonId(pokemonId - 1);
+          }
         }}
       />
+      {pokemonId}
       <Button
         text="Siguiente"
         clicked={() => {
