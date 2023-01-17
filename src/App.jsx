@@ -1,9 +1,21 @@
 import React from "react";
+import { Button } from "./components/Button";
 
 const App = () => {
   return (
     <div>
-      <h1>hola</h1>
+      <Button
+        text="Anterior"
+        clicked={() => {
+          console.log("clicked Anterior");
+        }}
+      />
+      <Button
+        text="Siguiente"
+        clicked={() => {
+          console.log("clicked Siguiente");
+        }}
+      />
     </div>
   );
 };
