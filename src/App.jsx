@@ -9,11 +9,15 @@ const App = () => {
       <Button
         text="Anterior"
         clicked={() => {
-          if (pokemonId === 1) {
-            setPokemonId(1);
-          } else {
-            setPokemonId(pokemonId - 1);
-          }
+          // if (pokemonId === 1) {
+          //   setPokemonId(1);
+          // } else {
+          //   setPokemonId(pokemonId - 1);
+          // }
+
+          // es mejor con ternarios:
+
+          pokemonId === 1 ? setPokemonId(1) : setPokemonId(pokemonId - 1);
         }}
       />
       {pokemonId}
