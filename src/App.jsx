@@ -4,7 +4,6 @@ import { Card } from "./components/Card";
 
 const App = () => {
   const [pokemonId, setPokemonId] = useState(1);
-  const [pokemonName, setPokemonName] = useState("");
 
   useEffect(() => {
     getEvolution(pokemonId);
@@ -16,7 +15,16 @@ const App = () => {
       `https://pokeapi.co/api/v2/evolution-chain/${id}/`
     );
     const data = await response.json();
-    setPokemonName(data.chain.species.name);
+    let pokemonName = data.chain.species.name;
+    getPokemonImg(pokemonName);
+  }
+
+  async function getPokemonImg(name) {
+    const responseImg = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${name}/`
+    );
+    const dataImg = await responseImg.json();
+    console.log(dataImg.sprites.other["official-artwork"].front_shiny);
   }
 
   function prevClick() {
@@ -30,7 +38,7 @@ const App = () => {
     <div>
       <Card />
       <Button text="Anterior" clicked={() => prevClick()} />
-      {pokemonName}
+
       <Button text="Siguiente" clicked={() => nextClick()} />
     </div>
   );
