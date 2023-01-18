@@ -1,7 +1,8 @@
-const Card = () => {
+const Card = ({ name, img }) => {
   return (
     <div>
-      <p>Marco</p>
+      <p>{name}</p>
+      <img src={img} alt="pokemon img" />
     </div>
   );
 };

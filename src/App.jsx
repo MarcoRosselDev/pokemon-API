@@ -4,6 +4,7 @@ import { Card } from "./components/Card";
 
 const App = () => {
   const [pokemonId, setPokemonId] = useState(1);
+  const [pokemonEvolutions, setPokemonEvolutions] = useState([]);
 
   useEffect(() => {
     getEvolution(pokemonId);
@@ -20,16 +21,19 @@ const App = () => {
     let pokemonName = data.chain.species.name;
     let pokemonImg = await getPokemonImg(pokemonName);
     pokemonEvoArray.push([pokemonName, pokemonImg]);
+    setPokemonEvolutions(pokemonEvoArray);
 
     if (data.chain.evolves_to.length !== 0) {
       let pokemonLv2 = data.chain.evolves_to[0].species.name;
       let pokemonLv2Img = await getPokemonImg(pokemonLv2);
       pokemonEvoArray.push([pokemonLv2, pokemonLv2Img]);
+      setPokemonEvolutions(pokemonEvoArray);
 
       if (data.chain.evolves_to[0].evolves_to.length !== 0) {
         let pokemonLv3 = data.chain.evolves_to[0].evolves_to[0].species.name;
         let pokeomnLv3Img = await getPokemonImg(pokemonLv3);
         pokemonEvoArray.push([pokemonLv3, pokeomnLv3Img]);
+        setPokemonEvolutions(pokemonEvoArray);
         console.log(pokemonEvoArray);
       }
     }
@@ -51,12 +55,22 @@ const App = () => {
   }
 
   return (
-    <div>
-      <Card />
-      <Button text="Anterior" clicked={() => prevClick()} />
+    <>
+      <div>
+        {pokemonEvolutions.map((pokemon) => (
+          <Card
+            name={pokemon[0]}
+            key={pokemon.length * Math.random() * 10}
+            img={pokemon[1]}
+          />
+        ))}
+      </div>
+      <div>
+        <Button text="Anterior" clicked={() => prevClick()} />
 
-      <Button text="Siguiente" clicked={() => nextClick()} />
-    </div>
+        <Button text="Siguiente" clicked={() => nextClick()} />
+      </div>
+    </>
   );
 };
 
