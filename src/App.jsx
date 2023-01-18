@@ -7,7 +7,6 @@ const App = () => {
 
   useEffect(() => {
     getEvolution(pokemonId);
-    console.log("ejecutado");
   }, [pokemonId]);
 
   async function getEvolution(id) {
@@ -19,8 +18,15 @@ const App = () => {
     let pokemonEvoArray = [];
 
     let pokemonName = data.chain.species.name;
-    let pokemonImg = getPokemonImg(pokemonName);
+    let pokemonImg = await getPokemonImg(pokemonName);
     pokemonEvoArray.push([pokemonName, pokemonImg]);
+
+    if (data.chain.evolves_to.length !== 0) {
+      let pokemonLv2 = data.chain.evolves_to[0].species.name;
+      let pokemonLv2Img = await getPokemonImg(pokemonLv2);
+      pokemonEvoArray.push([pokemonLv2, pokemonLv2Img]);
+      console.log(pokemonEvoArray);
+    }
   }
 
   async function getPokemonImg(name) {
