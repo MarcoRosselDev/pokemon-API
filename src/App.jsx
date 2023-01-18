@@ -25,7 +25,13 @@ const App = () => {
       let pokemonLv2 = data.chain.evolves_to[0].species.name;
       let pokemonLv2Img = await getPokemonImg(pokemonLv2);
       pokemonEvoArray.push([pokemonLv2, pokemonLv2Img]);
-      console.log(pokemonEvoArray);
+
+      if (data.chain.evolves_to[0].evolves_to.length !== 0) {
+        let pokemonLv3 = data.chain.evolves_to[0].evolves_to[0].species.name;
+        let pokeomnLv3Img = await getPokemonImg(pokemonLv3);
+        pokemonEvoArray.push([pokemonLv3, pokeomnLv3Img]);
+        console.log(pokemonEvoArray);
+      }
     }
   }
 
