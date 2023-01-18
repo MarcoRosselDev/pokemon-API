@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./components/Button";
 import { Card } from "./components/Card";
+//styles
+import "./app.css";
 
 const App = () => {
   const [pokemonId, setPokemonId] = useState(1);
@@ -21,20 +23,17 @@ const App = () => {
     let pokemonName = data.chain.species.name;
     let pokemonImg = await getPokemonImg(pokemonName);
     pokemonEvoArray.push([pokemonName, pokemonImg]);
-    setPokemonEvolutions(pokemonEvoArray);
 
     if (data.chain.evolves_to.length !== 0) {
       let pokemonLv2 = data.chain.evolves_to[0].species.name;
       let pokemonLv2Img = await getPokemonImg(pokemonLv2);
       pokemonEvoArray.push([pokemonLv2, pokemonLv2Img]);
-      setPokemonEvolutions(pokemonEvoArray);
 
       if (data.chain.evolves_to[0].evolves_to.length !== 0) {
         let pokemonLv3 = data.chain.evolves_to[0].evolves_to[0].species.name;
         let pokeomnLv3Img = await getPokemonImg(pokemonLv3);
         pokemonEvoArray.push([pokemonLv3, pokeomnLv3Img]);
         setPokemonEvolutions(pokemonEvoArray);
-        console.log(pokemonEvoArray);
       }
     }
   }
@@ -56,7 +55,7 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <div className="container">
         {pokemonEvolutions.map((pokemon) => (
           <Card
             name={pokemon[0]}
@@ -65,7 +64,7 @@ const App = () => {
           />
         ))}
       </div>
-      <div>
+      <div className="buttons">
         <Button text="Anterior" clicked={() => prevClick()} />
 
         <Button text="Siguiente" clicked={() => nextClick()} />
