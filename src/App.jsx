@@ -8,7 +8,8 @@ const App = () => {
 
   useEffect(() => {
     getEvolution(pokemonId);
-  });
+    console.log("ejecutado");
+  }, [pokemonId]);
 
   async function getEvolution(id) {
     const response = await fetch(
