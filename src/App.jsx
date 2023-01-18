@@ -33,9 +33,9 @@ const App = () => {
         let pokemonLv3 = data.chain.evolves_to[0].evolves_to[0].species.name;
         let pokeomnLv3Img = await getPokemonImg(pokemonLv3);
         pokemonEvoArray.push([pokemonLv3, pokeomnLv3Img]);
-        setPokemonEvolutions(pokemonEvoArray);
       }
     }
+    setPokemonEvolutions(pokemonEvoArray);
   }
 
   async function getPokemonImg(name) {
