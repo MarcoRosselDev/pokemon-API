@@ -13,7 +13,8 @@ const App = () => {
     const response = await fetch(
       `https://pokeapi.co/api/v2/evolution-chain/${id}/`
     );
-    console.log(response);
+    const data = await response.json();
+    console.log(data.chain.species.name);
   }
 
   function prevClick() {
