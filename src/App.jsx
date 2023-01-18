@@ -4,6 +4,7 @@ import { Card } from "./components/Card";
 
 const App = () => {
   const [pokemonId, setPokemonId] = useState(1);
+  const [pokemonName, setPokemonName] = useState("");
 
   useEffect(() => {
     getEvolution(pokemonId);
@@ -14,7 +15,7 @@ const App = () => {
       `https://pokeapi.co/api/v2/evolution-chain/${id}/`
     );
     const data = await response.json();
-    console.log(data.chain.species.name);
+    setPokemonName(data.chain.species.name);
   }
 
   function prevClick() {
@@ -28,7 +29,7 @@ const App = () => {
     <div>
       <Card />
       <Button text="Anterior" clicked={() => prevClick()} />
-      {pokemonId}
+      {pokemonName}
       <Button text="Siguiente" clicked={() => nextClick()} />
     </div>
   );
